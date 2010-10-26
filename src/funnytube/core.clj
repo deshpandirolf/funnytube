@@ -19,36 +19,35 @@
   (response/redirect "/"))
 
 (defn render-video [key]
-  (let [link (str "http://www.youtube.com/v/" key "?fs=1&amp;hl=en_US")] (
-  [:object
-   {:width 480 :height 385}
-   [:param
-    {:name "movie"
-     :value link}
-  ]
-   [:param
-    {:name "allowscriptaccess"
-    :value "always"}
-    ]
-   [:embed
-    {:src link
-     :type "application/x-shockwave-flash"
-     :allowscriptaccess "always"
-     :allowfullscreen "true"
-     :width 480
-     :height 385
-     }]
-   ]
-   )))
+  (let [link (str "http://www.youtube.com/v/" key "?fs=1&amp;hl=en_US")]
+    [:object
+     {:width 480 :height 385}
+     [:param
+      {:name "movie"
+       :value link}
+      ]
+     [:param
+      {:name "allowscriptaccess"
+       :value "always"}
+      ]
+     [:embed
+      {:src link
+       :type "application/x-shockwave-flash"
+       :allowscriptaccess "always"
+       :allowfullscreen "true"
+       :width 480
+       :height 385
+       }]]))
 
-(defn index [req] (html
-            [:html
-             [:head
-              [:title "funnytube"]]
-             [:body
-              (form-to [:post "/submit"]
-                       (text-field "v"))
-              (unordered-list (map render-video (map "_id" (fetch :videos))))]]))
+(defn index [req]
+  (html
+   [:html
+    [:head
+     [:title "funnytube"]]
+    [:body
+     (form-to [:post "/submit"]
+              (text-field "v"))
+     (unordered-list (map render-video (map :_id (fetch :videos))))]]))
 
 (defroutes main-routes
   (GET "/" [] index)
