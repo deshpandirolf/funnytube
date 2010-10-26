@@ -32,4 +32,6 @@
   (POST "/submit" {params :params} (submit (params "v")))
   (route/not-found "not found"))
 
-(run-jetty main-routes {:port 8080})
+(defn start []
+  (run-jetty main-routes {:port 8080})
+)

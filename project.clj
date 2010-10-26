@@ -5,4 +5,5 @@
                  [compojure "0.5.2"]
                  [hiccup "0.3.0"]
                  [congomongo "0.1.3-SNAPSHOT"]
-                 [ring/ring-jetty-adapter "0.3.1"]])
+                 [ring/ring-jetty-adapter "0.3.1"]]
+  :dev-dependencies [[swank-clojure "1.2.1"]])
