@@ -26,10 +26,10 @@
   (insert! :videos {:_id (id-for-url url) :score 0})
   (response/redirect "/"))
 
-(defn render-video [key]
+(defn render-video [key width height]
   (let [link (str "http://www.youtube.com/v/" key "?fs=1&amp;hl=en_US")]
     [:object
-     {:width 480 :height 385}
+     {:width width :height height}
      [:param
       {:name "movie"
        :value link}
@@ -43,9 +43,13 @@
        :type "application/x-shockwave-flash"
        :allowscriptaccess "always"
        :allowfullscreen "true"
-       :width 480
-       :height 385
+       :width width
+       :height height
        }]]))
+
+; TODO fix this
+(defn top-videos []
+  (fetch :videos))
 
 (defn index [req]
   (html
@@ -56,7 +60,17 @@
     [:body
      (form-to [:post "/submit"]
               (text-field "v"))
-     (unordered-list (map render-video (map :_id (fetch :videos))))]]))
+     [:ul
+      (map-indexed
+       (fn [i, video]
+         (if (< i 1)
+           [:li.one (render-video video 480 360)]
+           (if (< i 3)
+             [:li.two (render-video video 480 360)]
+             (if (< i 6)
+               [:li.three (render-video video 320 240)]
+               [:li.four (render-video video 240 180)]))))
+       (map :_id (top-videos)))]]]))
 
 (defroutes main-routes
   (GET "/" [] index)
