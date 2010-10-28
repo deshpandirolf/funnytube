@@ -16,7 +16,8 @@
   (response/redirect "/"))
 
 (defn upvote [id] (update-score id 1))
-(defn downvote [id] (update-score id -1))
+(defn downvote [id]
+  (update-score id -1))
 
 (defn id-for-url [url]
   (nth (or (re-find #"youtube\.com.*\?v=(\w+)" url)
@@ -27,25 +28,30 @@
   (response/redirect "/"))
 
 (defn render-video [key width height]
-  (let [link (str "http://www.youtube.com/v/" key "?fs=1&amp;hl=en_US")]
-    [:object
-     {:width width :height height}
-     [:param
-      {:name "movie"
-       :value link}
-      ]
-     [:param
-      {:name "allowscriptaccess"
-       :value "always"}
-      ]
-     [:embed
-      {:src link
-       :type "application/x-shockwave-flash"
-       :allowscriptaccess "always"
-       :allowfullscreen "true"
-       :width width
-       :height height
-       }]]))
+  [:div
+    (form-to [:post (str "/downvote?id=" key)]
+             (submit-button "Downvote"))
+    (let [link (str "http://www.youtube.com/v/" key "?fs=1&amp;hl=en_US")]
+      [:object
+       {:width width :height height}
+       [:param
+        {:name "movie"
+         :value link}
+        ]
+       [:param
+        {:name "allowscriptaccess"
+         :value "always"}
+        ]
+       [:embed
+        {:src link
+         :type "application/x-shockwave-flash"
+         :allowscriptaccess "always"
+         :allowfullscreen "true"
+         :width width
+         :height height
+         }]])
+     (form-to [:post (str "/upvote?id=" key)]
+              (submit-button "Upvote"))])
 
 ; TODO fix this
 (defn top-videos []
@@ -74,7 +80,7 @@
 
 (defroutes main-routes
   (GET "/" [] index)
-  (POST "/downvote" {params :params} (upvote (params "id")))
+  (POST "/downvote" {params :params} (downvote (params "id")))
   (POST "/upvote" {params :params} (upvote (params "id")))
   (POST "/submit" {params :params} (submit (params "v")))
   (route/files "/static" {:root "static"})
