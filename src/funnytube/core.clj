@@ -43,7 +43,8 @@
   (html
    [:html
     [:head
-     [:title "funnytube"]]
+     [:title "funnytube"]
+     (include-css "/static/css/main.css")]
     [:body
      (form-to [:post "/submit"]
               (text-field "v"))
@@ -52,6 +53,7 @@
 (defroutes main-routes
   (GET "/" [] index)
   (POST "/submit" {params :params} (submit (params "v")))
+  (route/files "/static" {:root "static"})
   (route/not-found "not found"))
 
 (defn start []
