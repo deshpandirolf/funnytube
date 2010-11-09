@@ -17,20 +17,34 @@ ul li {
 li.one {
     float: none;
     padding-left: 240px;
+}
+li.one div {
     width: 480px;
     height: 360px;
 }
-li.two {
+li.two div {
     width: 480px;
     height: 360px;
 }
-li.three {
+li.three div {
     width: 320px;
     height: 240px;
 }
-li.four {
+li.four div {
     width: 240px;
     height: 180px;
+}
+li.one h2 {
+    width: 440px;
+}
+li.two h2 {
+    width: 440px;
+}
+li.three h2 {
+    width: 280px;
+}
+li.four h2 {
+    width: 200px;
 }
 li.one img.thumb {
     width: 480px;
@@ -73,7 +87,7 @@ div.vid h2 {
     display: none;
     background: black;
     margin: 0em;
-    padding: 0.5em;
+    padding: 0.5em 20px 0.5em 20px;
     color: white;
     z-index: 999;
     position: absolute;
