@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Funnytube</title>
+    <link type="text/css" src="/static/css/main.css">
+  </head>
+  <body>
+    <ul>
+      <% @videos.each do |video| %>
+        <%= video['_id'] %>
+      <% end %>
+    </ul>
+  </body>
+</html>
