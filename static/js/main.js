@@ -1,10 +1,17 @@
 jQuery(document).ready(function() {
     jQuery("input#v").focus();
 
+    jQuery("div.vid").hover(function() {
+        jQuery(this).children("h2").css({}).fadeIn();
+    }, function () {
+        jQuery(this).children("h2").fadeOut();
+    });
+
     jQuery("a.play").click(function() {
         var vid_id = jQuery(this).attr("rel");
 
         alert(vid_id);
+    });
 
 /*        jQuery("#" + modal + " h2").append('<span class="close">[<a href="#">X</a>]</span>');
         jQuery("#" + modal).show();
@@ -27,5 +34,4 @@ jQuery(document).ready(function() {
             jQuery('#fade, span.close').remove();
         });
         return false;*/
-    });
 });

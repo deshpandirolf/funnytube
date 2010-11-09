@@ -20,6 +20,13 @@ li.one {
 }
 div.vid h2 {
     display: none;
+    background: black;
+    margin: 0em;
+    padding: 0.5em;
+    color: white;
+    z-index: 999;
+    position: absolute;
+    font-size: 138.5%;
 }
 #fade {
     display: none;
