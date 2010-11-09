@@ -1,5 +1,6 @@
+include Mongo
+
 class FunnyTube
-  include Mongo
 
   class << self
     def coll
