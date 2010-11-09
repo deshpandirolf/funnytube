@@ -28,7 +28,7 @@
   (response/redirect "/"))
 
 (defn render-video [key width height]
-  [:div
+  [:div {:class "vid"}
     (form-to [:post (str "/downvote?id=" key)]
              (submit-button "Downvote"))
     (let [link (str "http://www.youtube.com/v/" key "?fs=1&amp;hl=en_US")]
@@ -57,12 +57,24 @@
 (defn top-videos []
   (fetch :videos))
 
+(defn render-thumb [key width height]
+  [:div.vid
+   [:h2 key] ; TODO should be video title
+   [:a.play {:href "#"
+             :rel key}
+    [:img {:src (str "http://img.youtube.com/vi/" key "/0.jpg")
+           :width width
+           :height height}]]])
+
 (defn index [req]
   (html
    [:html
     [:head
      [:title "funnytube"]
-     (include-css "/static/css/main.css")]
+     (include-js "/static/js/jquery.min.js"
+                 "/static/js/main.js")
+     (include-css "/static/css/reset-fonts-grids-base-min.css"
+                  "/static/css/main.css")]
     [:body
      (form-to [:post "/submit"]
               (text-field "v"))
@@ -70,12 +82,12 @@
       (map-indexed
        (fn [i, video]
          (if (< i 1)
-           [:li.one (render-video video 480 360)]
+           [:li.one (render-thumb video 480 360)]
            (if (< i 3)
-             [:li.two (render-video video 480 360)]
+             [:li.two (render-thumb video 480 360)]
              (if (< i 6)
-               [:li.three (render-video video 320 240)]
-               [:li.four (render-video video 240 180)]))))
+               [:li.three (render-thumb video 320 240)]
+               [:li.four (render-thumb video 240 180)]))))
        (map :_id (top-videos)))]]]))
 
 (defroutes main-routes
