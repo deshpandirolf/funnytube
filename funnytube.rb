@@ -32,6 +32,7 @@ class FunnyTube
     def id_for_url(url)
       md = url.match(/youtube\.com.*\?v=([\w-]+)/)
       md ||= url.match(/youtube\.com\/v\/([\w-]+)/)
+
       begin
         md[1]
       rescue
@@ -48,10 +49,19 @@ end
 set :views, File.dirname(__FILE__) + '/templates'
 set :public, File.dirname(__FILE__) + '/static'
 
+before do
+  if request.cookies["u"].nil?
+    response.set_cookie('u', Digest::MD5.hexdigest(Time.now.to_i.to_s + request.referer))
+  end
+end
+
 post '/submit' do
   video_id = FunnyTube.id_for_url(params[:v])
   title = FunnyTube.youtube.video_by(video_id).title
-  FunnyTube.coll.save({:_id => video_id, :title => title, :score => 0})
+  FunnyTube.coll.save({:_id => video_id, 
+                      :user_id => request.cookies["u"],
+                      :title => title,
+                      :score => 0})
   redirect '/'
 end
 
