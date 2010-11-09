@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'mongo'
+require 'sinatra'
+
 include Mongo
 
 class FunnyTube
