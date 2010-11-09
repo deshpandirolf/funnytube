@@ -17,6 +17,56 @@ ul li {
 li.one {
     float: none;
     padding-left: 240px;
+    width: 480px;
+    height: 360px;
+}
+li.two {
+    width: 480px;
+    height: 360px;
+}
+li.three {
+    width: 320px;
+    height: 240px;
+}
+li.four {
+    width: 240px;
+    height: 180px;
+}
+li.one img.thumb {
+    width: 480px;
+    height: 360px;
+}
+li.two img.thumb {
+    width: 480px;
+    height: 360px;
+}
+li.three img.thumb {
+    width: 320px;
+    height: 240px;
+}
+li.four img.thumb {
+    width: 240px;
+    height: 180px;
+}
+.play-img {
+    z-index: 999;
+    position: relative;
+}
+li.one .play-img {
+    top: -204px;
+    left: 216px;
+}
+li.two .play-img {
+    top: -204px;
+    left: 216px;
+}
+li.three .play-img {
+    top: -144px;
+    left: 136px;
+}
+li.four .play-img {
+    top: -114px;
+    left: 96px;
 }
 div.vid h2 {
     display: none;

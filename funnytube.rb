@@ -34,6 +34,7 @@ class FunnyTube
 end
 
 set :views, File.dirname(__FILE__) + '/templates'
+set :public, File.dirname(__FILE__) + '/static'
 
 post '/submit' do
   video_id = params[:v]

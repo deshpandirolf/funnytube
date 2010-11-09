@@ -1,12 +1,32 @@
 <html>
   <head>
     <title>Funnytube</title>
-    <link type="text/css" src="/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset-fonts-grids-base-min.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/main.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
+    <form action="/submit" method="POST">
+      <input name="v">
+    </form>
     <ul>
-      <% @videos.each do |video| %>
-        <%= video['_id'] %>
+      <% @videos.each_with_index do |video, i| %>
+        <% if i < 1 %>
+        <li class="one">
+        <% elsif i < 3 %>
+        <li class="two">
+        <% elsif i < 6 %>
+        <li class="three">
+        <% else %>
+        <li class="four">
+        <% end %>
+          <div class="vid">
+            <h2><%=video["title"] %></h2>
+            <a class="play-link" href="#" rel="<%=video["_id"] %>"><img class="thumb" src="http://img.youtube.com/vi/<%=video["_id"] %>/0.jpg"></a>
+            <img class="play-img" src="/images/play.png">
+          </div>
+        </li>
       <% end %>
     </ul>
   </body>

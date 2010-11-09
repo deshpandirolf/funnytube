@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
         jQuery(this).children("h2").fadeOut();
     });
 
-    jQuery("a.play").click(function() {
+    jQuery("a.play-link").click(function() {
         var vid_id = jQuery(this).attr("rel");
 
         alert(vid_id);
