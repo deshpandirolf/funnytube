@@ -1,4 +1,6 @@
-require 'rubygems'
+require "rubygems"
+require "bundler/setup"
+require 'youtube_g'
 require 'mongo'
 require 'sinatra'
 
@@ -9,6 +11,10 @@ class FunnyTube
   class << self
     def coll
       @@coll ||= Connection.new.db('funnytube').collection('videos')
+    end
+
+    def youtube
+      @@youtube ||= YouTubeG::Client.new
     end
 
     def update_score(id, delta)
@@ -24,7 +30,13 @@ class FunnyTube
     end
 
     def id_for_url(url)
-      url[/youtube\.com.*\?v=(\w+)/] || url[/youtube\.com\/v\/(\w+)/]
+      md = url.match(/youtube\.com.*\?v=(\w+)/)
+      md ||= url.match(/youtube\.com\/v\/(\w+)/)
+      begin
+        md[1]
+      rescue
+        raise "ERROR: Could not parse youtube video URL."
+      end
     end
 
     def top_videos
@@ -37,8 +49,9 @@ set :views, File.dirname(__FILE__) + '/templates'
 set :public, File.dirname(__FILE__) + '/static'
 
 post '/submit' do
-  video_id = params[:v]
-  @coll.save({:_id => video_id, :score => 0})
+  video_id = FunnyTube.id_for_url(params[:v])
+  title = FunnyTube.youtube.video_by(video_id).title
+  FunnyTube.coll.save({:_id => video_id, :title => title, :score => 0})
   redirect '/'
 end
 
