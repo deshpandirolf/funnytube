@@ -3,10 +3,10 @@ jQuery(document).ready(function() {
 
     jQuery("div.vid").hover(function() {
         jQuery(this).children("h2").fadeIn();
-        jQuery(this).children(".play-img").css({"opacity": "1.0"});
+        jQuery(this).children("a").children(".play-img").css({"opacity": "1.0"});
     }, function () {
         jQuery(this).children("h2").fadeOut();
-        jQuery(this).children(".play-img").css({"opacity": "0.6"});
+        jQuery(this).children("a").children(".play-img").css({"opacity": "0.6"});
     });
 
     jQuery("a.play-link").click(function() {
