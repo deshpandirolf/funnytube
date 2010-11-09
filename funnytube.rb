@@ -30,8 +30,8 @@ class FunnyTube
     end
 
     def id_for_url(url)
-      md = url.match(/youtube\.com.*\?v=(\w+)/)
-      md ||= url.match(/youtube\.com\/v\/(\w+)/)
+      md = url.match(/youtube\.com.*\?v=([\w-]+)/)
+      md ||= url.match(/youtube\.com\/v\/([\w-]+)/)
       begin
         md[1]
       rescue
