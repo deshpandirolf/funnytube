@@ -1,7 +1,3 @@
 .bundle
-pom.xml
-*jar
-lib
-classes
 *~
 .DS*
