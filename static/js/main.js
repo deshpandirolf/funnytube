@@ -17,8 +17,10 @@ jQuery(document).ready(function() {
 
     jQuery("a.play-link").click(function() {
         var vid_id = jQuery(this).attr("rel");
+        var title = jQuery(this).prev().html();
 
         jQuery("body").append('<div id="fade"></div>');
+        jQuery("#vt").html(title);
         jQuery("#player").css({"visibility": "visible"});
         jQuery("#fade").css({"filter" : "alpha(opacity=80)"}).fadeIn();
         ytplayer.cueVideoById(vid_id, 0);
@@ -36,7 +38,7 @@ jQuery(document).ready(function() {
         return false;
     });
 
-    jQuery("#fade").live("click", function() {
+    jQuery("#fade, #player").live("click", function() {
         ytplayer.pauseVideo();
         jQuery("#player").css({"visibility": "hidden"});
         jQuery("#fade").hide(0, function() {

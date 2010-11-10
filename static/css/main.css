@@ -103,14 +103,26 @@ div.vid h2 {
     opacity: .80;
     z-index: 9999;
 }
+#vt {
+    text-align: center;
+    color: white;
+    z-index: 99999;
+}
 #player {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-left: -240px;
-    margin-top: -180px;
     visibility: hidden;
     z-index: 99999;
+    position: fixed;
+    top: 50%;
+    left: 0%;
+    width: 100%;
+    margin-top: -220px;
+}
+#video {
+    position: relative;
+    left: 50%;
+    margin-left: -240px;
+    width: 480px;
+    height: 360px;
     -webkit-box-shadow: 0em 0em 3em #000;
     -moz-box-shadow: 0em 0em 3em #000;
     box-shadow: 0em 0em 3em #000;
