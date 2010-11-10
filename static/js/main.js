@@ -27,11 +27,20 @@ jQuery(document).ready(function() {
         return false;
     });
 
-    jQuery('#fade').live('click', function() {
-        ytplayer.stopVideo();
+    jQuery("#overlay").live("click", function() {
+        if (ytplayer.getPlayerState() == 1) { // playing
+            ytplayer.pauseVideo();
+        } else {
+            ytplayer.playVideo();
+        }
+        return false;
+    });
+
+    jQuery("#fade").live("click", function() {
+        ytplayer.pauseVideo();
         jQuery("#player").css({"visibility": "hidden"});
         jQuery("#fade").hide(0, function() {
-            jQuery('#fade').remove();
+            jQuery("#fade").remove();
         });
         return false;
     });
