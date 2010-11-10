@@ -66,6 +66,8 @@ li.four img.thumb {
     z-index: 999;
     position: relative;
     opacity: .60;
+    width: 48px;
+    height: 48px;
 }
 li.one .play-img {
     top: -204px;
