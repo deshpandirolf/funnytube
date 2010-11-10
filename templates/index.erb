@@ -14,11 +14,9 @@
     </form>
     <ul>
       <% @videos.each_with_index do |video, i| %>
-        <% if i < 1 %>
-        <li class="one">
-        <% elsif i < 3 %>
+        <% if i < 2 %>
         <li class="two">
-        <% elsif i < 6 %>
+        <% elsif i < 5 %>
         <li class="three">
         <% else %>
         <li class="four">

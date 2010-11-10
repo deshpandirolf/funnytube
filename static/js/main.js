@@ -9,10 +9,10 @@ jQuery(document).ready(function() {
 
     jQuery("div.vid").hover(function() {
         jQuery(this).children("h2").show();
-        jQuery(this).children("a").children(".play-img").css({"opacity": "1.0"});
+        jQuery(this).children("a").children(".play-img").css({"opacity": "0.8"});
     }, function () {
         jQuery(this).children("h2").hide();
-        jQuery(this).children("a").children(".play-img").css({"opacity": "0.6"});
+        jQuery(this).children("a").children(".play-img").css({"opacity": "0.4"});
     });
 
     jQuery("a.play-link").click(function() {
