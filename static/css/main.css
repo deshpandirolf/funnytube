@@ -101,37 +101,21 @@ div.vid h2 {
     opacity: .80;
     z-index: 9999;
 }
-.modal {
-    max-width: 500px;
-    display: none;
-    background: white;
-    float: left;
+#player {
     position: fixed;
-    top: 50%; left: 50%;
-    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    margin-left: -240px;
+    margin-top: -180px;
+    visibility: hidden;
     -webkit-box-shadow: 0em 0em 3em #000;
     -moz-box-shadow: 0em 0em 3em #000;
     box-shadow: 0em 0em 3em #000;
-    -webkit-border-radius: 0.5em;
-    -moz-border-radius: 0.5em;
-    border-radius: 0.5em;
-}
-.modal h2 {
-    margin: 0em;
-    padding: 1em;
-    border-bottom: 1px solid #DDDDDD;
-}
-.close {
-    padding-left: 1em;
-    float: right;
-}
-.modal div {
-    padding: 1em 1em 0em 1em;
 }
 /*--Making IE6 Understand Fixed Positioning--*/
 *html #fade {
     position: absolute;
 }
-*html .modal {
+*html #player {
     position: absolute;
 }
