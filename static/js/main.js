@@ -38,6 +38,11 @@ jQuery(document).ready(function() {
         return false;
     });
 
+    /* TODO show play/pause image */
+    jQuery("#overlay").hover(function() {
+    }, function() {
+    });
+
     jQuery("#fade, #player").live("click", function() {
         ytplayer.pauseVideo();
         jQuery("#player").css({"visibility": "hidden"});
